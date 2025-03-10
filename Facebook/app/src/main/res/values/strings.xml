@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Facebook</string>
+
+    <string name="welcome">Hello Ghana!</string>
+    <string name="send">Submits</string>
+    <string name="RegisterTitle">Create Account</string>
+    <string name="RegisterComment">Create an account so you can explore for the existing jobs</string>
+    <string name="Account">Already have an account ?</string>
+    <string name="Account2">Or Continue with</string>
+    <string name="Login">Login Here</string>
+    <string name="LoginComment">Login so you can explore for the existing jobs</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallary</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_sports">Sports</string>
+    <string name="menu_login">Login</string>
+</resources>
