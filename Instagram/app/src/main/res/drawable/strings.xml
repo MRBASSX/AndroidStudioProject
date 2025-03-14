@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Facebook</string>
+
+    <string name="welcome">Hello Ghana!</string>
+    <string name="send">Submits</string>
+    <string name="RegisterTitle">Create Account</string>
+   <string name="RegisterComment">Create an account so you can explore for the existing jobs</string>
+    <string name="Account">Already have an account ?</string>
+    <string name="Account2">Or Continue with</string>
+</resources>

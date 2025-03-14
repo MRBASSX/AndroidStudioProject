@@ -4,12 +4,12 @@ import android.graphics.Bitmap;
 
 public class CustomModel {
 
-    String name;
-    String title;
-    String des;
-    Bitmap image;
+    private String name;
+    private String title;
+    private String des;
+    private int image;
 
-    public CustomModel(String name, String title, String des, Bitmap image) {
+    public CustomModel(String name, String title, String des, int image) {
         this.name = name;
         this.title = title;
         this.des = des;
@@ -40,11 +40,11 @@ public class CustomModel {
         this.des = des;
     }
 
-    public Bitmap getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

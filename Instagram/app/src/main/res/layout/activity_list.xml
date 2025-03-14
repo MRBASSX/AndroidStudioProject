@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    tools:context=".List"
+    tools:menu="@menu/list">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragmentContainerView"-->
+<!--        android:name="com.example.instagram.BlankFragment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView4"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="18dp"-->
+<!--        android:layout_marginTop="18dp"-->
+<!--        android:onClick="Profile"-->
+<!--        app:srcCompat="@drawable/ic_launcher_background"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView5"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="75dp"-->
+<!--        android:layout_marginTop="33dp"-->
+<!--        android:layout_toEndOf="@+id/imageView4"-->
+<!--        android:text="Name"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="24sp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView61"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/textView5"-->
+<!--        android:layout_marginStart="75dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_toEndOf="@+id/imageView4"-->
+<!--        android:text="Price"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="24sp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView7"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/textView61"-->
+<!--        android:layout_marginStart="75dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_toEndOf="@+id/imageView4"-->
+<!--        android:text="Share"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="24sp" />-->
+
+</RelativeLayout>

@@ -92,7 +92,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Data"
+        android:id="@+id/RecyclerId"
         android:layout_width="match_parent"
         android:layout_height="546dp"
         android:layout_marginTop="12dp"
