@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "project_number": "314689606322",
+    "firebase_url": "https://user-de54d-default-rtdb.firebaseio.com",
+    "project_id": "user-de54d",
+    "storage_bucket": "user-de54d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314689606322:android:be54c6b6a6b3abcf082fab",
+        "android_client_info": {
+          "package_name": "com.company.telegram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1BuTp76zBOI-OVi06K6CXOOBjd37W17Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314689606322:android:d5217bc6b3a92318082fab",
+        "android_client_info": {
+          "package_name": "com.example.electroupi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1BuTp76zBOI-OVi06K6CXOOBjd37W17Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314689606322:android:2f820b7297381a43082fab",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1BuTp76zBOI-OVi06K6CXOOBjd37W17Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314689606322:android:38a51f9e88b6a70a082fab",
+        "android_client_info": {
+          "package_name": "com.example.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1BuTp76zBOI-OVi06K6CXOOBjd37W17Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314689606322:android:d707d087ecf2ceed082fab",
+        "android_client_info": {
+          "package_name": "com.example.hospitalpatientrecordkeeping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1BuTp76zBOI-OVi06K6CXOOBjd37W17Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314689606322-umus0mnb5nrfuu2kiomu40obonbqtdqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
