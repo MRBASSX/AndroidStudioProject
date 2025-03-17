@@ -9,6 +9,9 @@ public class CustomModel {
     private String des;
     private int image;
 
+    public CustomModel() {
+    }
+
     public CustomModel(String name, String title, String des, int image) {
         this.name = name;
         this.title = title;
