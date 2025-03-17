@@ -3,20 +3,17 @@ package com.example.firebase.account;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-//import android.support.annotation.NonNull;
-//import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -25,12 +22,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.firebase.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
@@ -46,6 +44,12 @@ public class Login extends AppCompatActivity {
     DatabaseReference databaseReference;
     int Image_Request_Code = 7;
     ProgressDialog progressDialog ;
+    LinearProgressIndicator linearProgressIndicator;
+    CircularProgressIndicator circularProgressIndicator;
+    ActivityResultLauncher<Intent> GallaryImage;
+    Bitmap  imageToStore;
+    uploadinfo imageUploadInfo;
+    StorageReference storageReference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,50 +61,76 @@ public class Login extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Images");
         btnbrowse = (Button)findViewById(R.id.btnbrowse);
         btnupload= (Button)findViewById(R.id.btnupload);
-        txtdata = (EditText)findViewById(R.id.txtdata);
-        imgview = (ImageView)findViewById(R.id.image_view);
+        txtdata = (EditText)findViewById(R.id.titledata);
+        imgview = (ImageView)findViewById(R.id.images);
+          linearProgressIndicator  = binding.LinearProgress;
+        linearProgressIndicator.setIndicatorDirection(LinearProgressIndicator.INDICATOR_DIRECTION_RIGHT_TO_LEFT);
+        linearProgressIndicator.setIndicatorColor(getResources().getColor(R.color.teal_200));
+        linearProgressIndicator.setIndeterminate(true);
+
+
+        circularProgressIndicator = binding.CircularProgress;
+        circularProgressIndicator.setIndicatorDirection(CircularProgressIndicator.INDICATOR_DIRECTION_COUNTERCLOCKWISE);
+        circularProgressIndicator.setIndicatorColor(getResources().getColor(R.color.black));
+        circularProgressIndicator.setIndeterminate(true);
+        circularProgressIndicator.setIndicatorSize(100);
+        circularProgressIndicator.setTrackThickness(10);
         progressDialog = new ProgressDialog(this);// context name as per your project name
-
+        storeGalaryImage();
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void  GetImage(View view){
+        getGallaryImage();
 
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == Image_Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
-            FilePathUri = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
-                imgview.setImageBitmap(bitmap);
-            }
-            catch (IOException e) {
-
-                e.printStackTrace();
-            }
-        }
     }
 
+    public  void  getGallaryImage(){
+        Intent intent =  new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        GallaryImage.launch(intent);
+//       ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//
+//           @Override
+//           public void onActivityResult(ActivityResult o) {
+//
+//           }
+//       });
+    }
+
+    public  void storeGalaryImage(){
+
+        GallaryImage = registerForActivityResult(new
+                        ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+
+
+
+
+                        try {
+                            assert result.getData() != null;
+                            FilePathUri = result.getData().getData();
+                            imageToStore = MediaStore.Images.Media.getBitmap(getContentResolver(),FilePathUri);
+                            imgview.setImageBitmap(imageToStore);
+
+                        } catch (IOException e) {
+
+                            Toast.makeText(getApplicationContext(), "Error Uploading", Toast.LENGTH_LONG).show();
+                        }
+
+
+
+                    }
+                });
+    }
 
     public String GetFileExtension(Uri uri) {
 
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
-
-    }
-
-
-
-    public void GetImage(View view){
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), Image_Request_Code);
 
     }
 
@@ -121,23 +151,51 @@ public class Login extends AppCompatActivity {
 
             progressDialog.setTitle("Image is Uploading...");
             progressDialog.show();
-            StorageReference storageReference2 = storageReference.child(System.currentTimeMillis() + "." + GetFileExtension(FilePathUri));
+            linearProgressIndicator.setVisibility(View.VISIBLE);
+            circularProgressIndicator.setVisibility(View.VISIBLE);
+
+
+
+
+            storageReference2 = storageReference.child(System.currentTimeMillis()+"."+GetFileExtension(FilePathUri));
             storageReference2.putFile(FilePathUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                             String TempImageName = txtdata.getText().toString().trim();
+
+                            circularProgressIndicator.setVisibility(View.INVISIBLE);
+                            linearProgressIndicator.setVisibility(View.INVISIBLE);
                             progressDialog.dismiss();
+                            String imageUrl;
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String imageUrl = uri.toString();
+                                        imageUploadInfo = new uploadinfo(TempImageName,imageUrl);
+                                        String ImageUploadId = databaseReference.push().getKey();
+                                        databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+
+                                        //createNewPost(imageUrl);
+                                    }
+                                });
+                            }
                             Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
-                            @SuppressWarnings("VisibleForTests")
-                            uploadinfo imageUploadInfo = new uploadinfo(TempImageName, taskSnapshot.getUploadSessionUri().toString());
 
-                            String ImageUploadId = databaseReference.push().getKey();
 
-                            databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
+
+
+
+
+
+
                         }
                     });
+
+
         }
         else {
 
@@ -147,3 +205,5 @@ public class Login extends AppCompatActivity {
     }
 
 }
+
+//https://stackoverflow.com/questions/50585334/tasksnapshot-getdownloadurl-method-not-working
