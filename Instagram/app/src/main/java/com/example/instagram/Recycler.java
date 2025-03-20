@@ -62,7 +62,7 @@ public class Recycler extends AppCompatActivity implements SelectedItem {
 
         for (CustomModel EachData : itemIds) {
 
-            if (EachData.getName().contains(text)) {
+            if (EachData.getName().toLowerCase().contains(text.toLowerCase())) {
 
                 filteredList.add(EachData);
 

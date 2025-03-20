@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity {
     }
 
     public  void  getGallaryImage(){
-        Intent intent =  new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent intent =  new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
         GallaryImage.launch(intent);
 //       ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 //
@@ -167,8 +167,8 @@ public class Login extends AppCompatActivity {
 
                             circularProgressIndicator.setVisibility(View.INVISIBLE);
                             linearProgressIndicator.setVisibility(View.INVISIBLE);
-                            progressDialog.dismiss();
-                            String imageUrl;
+
+                            String imageUrl;progressDialog.dismiss();
                             if (taskSnapshot.getMetadata().getReference() != null) {
                                 Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
                                 result.addOnSuccessListener(new OnSuccessListener<Uri>() {
