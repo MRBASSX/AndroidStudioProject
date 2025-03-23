@@ -1,6 +1,7 @@
 package com.example.facebook.ui.sports;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,55 +12,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.example.facebook.DetailPage;
 import com.example.facebook.R;
+import com.example.facebook.UserClasses.CustomAdapter;
 import com.example.facebook.UserClasses.CustomModel;
 import com.example.facebook.UserClasses.SelectedItem;
 import com.example.facebook.databinding.FragmentHomeBinding;
 import com.example.facebook.databinding.FragmentItemListBinding;
+import com.example.facebook.ui.home.HomeFragment;
 import com.example.facebook.ui.sports.placeholder.PlaceholderContent;
 
 import java.util.ArrayList;
 
-/**
- * A fragment representing a list of Items.
- */
+
 public class ItemFragment extends Fragment  implements SelectedItem {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 2;
 
-    ArrayList<PlaceholderContent> arrayList;
+    private int mColumnCount = 2;
+    ArrayList<PlaceholderContent>  arrayList,arrayList2;
+    CustomAdapter adapter,adapter2;
+    SearchView searchView;
     FragmentItemListBinding binding;
     RecyclerView recyclerView;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public ItemFragment() {
-    }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static ItemFragment newInstance(int columnCount) {
-        ItemFragment fragment = new ItemFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +59,7 @@ public class ItemFragment extends Fragment  implements SelectedItem {
         // Set the adapter
 
          recyclerView = binding.CustomRecycler;
+         searchView  = binding.CustomSearch;
 
 
             if (mColumnCount <= 1) {
@@ -86,15 +67,61 @@ public class ItemFragment extends Fragment  implements SelectedItem {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(arrayList,this));
+            recyclerView.setAdapter(new CustomAdapter(getActivity(),arrayList,this));
+            SearchViews();
 
 
-
-        return root;
+              return root;
     }
 
     @Override
-    public void OnItemSelected(PlaceholderContent customModel) {
+    public void OnItemSelected(PlaceholderContent custom) {
+
+        String[] Product = {custom.getName(),custom.getDesc(),custom.getTitle(),String.valueOf(custom.getImage_url())};
+        Toast.makeText(getActivity(), custom.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), DetailPage.class);
+        intent.putExtra("product",Product);
+        startActivity(intent);
+    }
+    private void SearchViews(){
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                FilterLister(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                FilterLister(s);
+                return false;
+            }
+        });
+
+    }
+
+
+    private void FilterLister(String text) {
+        arrayList2 = new ArrayList<>();
+        for (PlaceholderContent object: arrayList ){
+
+            if(object.getName().toLowerCase().contains(text.toLowerCase())){
+
+                arrayList2.add(object);
+
+            }
+
+        }
+
+        if (arrayList2.isEmpty()){
+
+            Toast.makeText(getActivity(), "Not Found", Toast.LENGTH_SHORT).show();
+        }else {
+
+            adapter2 = new CustomAdapter(getActivity(),arrayList2,this);
+            recyclerView.setAdapter(adapter2);
+        }
 
     }
 }

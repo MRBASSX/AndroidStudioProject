@@ -16,7 +16,7 @@
             android:name=".DetailPage"
             android:exported="false" />
         <activity
-            android:name=".account.LoginRegisterPage"
+            android:name=".Home"
             android:exported="true" />
         <activity
             android:name=".account.Login"
@@ -30,7 +30,7 @@
             android:name=".RecyclerDisplay"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".account.LoginRegisterPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
