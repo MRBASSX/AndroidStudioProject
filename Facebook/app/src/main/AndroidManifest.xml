@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Facebook"
         tools:targetApi="31">
         <activity
+            android:name=".DetailPage"
+            android:exported="false" />
+        <activity
+            android:name=".account.LoginRegisterPage"
+            android:exported="true" />
+        <activity
             android:name=".account.Login"
             android:exported="false"
             android:label="@string/title_activity_home"
@@ -21,10 +27,10 @@
             android:name=".account.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".RecyclerDisplay"
             android:exported="false" />
         <activity
-            android:name=".account.LoginRegisterPage"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

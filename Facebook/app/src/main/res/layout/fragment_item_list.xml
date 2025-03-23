@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="com.example.facebook.ui.sports.ItemFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.sports.ItemFragment"
-    tools:listitem="@layout/fragment_item" />
+    tools:context=".ui.sports.ItemFragment" >
+
+<SearchView
+android:id="@+id/CustomSearch"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="32dp"
+android:layout_marginEnd="32dp"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/CustomRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        android:layout_marginTop="3dp"
+        android:background="#68B2ED"
+        app:layout_constraintTop_toBottomOf="@+id/CustomSearch"
+        tools:listitem="@layout/fragment_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
