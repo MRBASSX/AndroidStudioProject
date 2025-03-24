@@ -1,6 +1,9 @@
 package com.example.instagram;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +23,12 @@ public class VideosApp extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        String url = "https://" +"pending" + "?alt=media&token=sadftewfdteyterrteqwy";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.setDataAndType(Uri.parse(url),"video/*");
+        startActivity(intent);
+
+
     }
 }
