@@ -34,9 +34,15 @@ public class Recycler extends AppCompatActivity implements SelectedItem {
         recycler.setHasFixedSize(true);
         itemIds = new ArrayList<CustomModel>();
 
-        itemIds.add(new CustomModel("Iddrisu","THE","Men",11));
-        itemIds.add(new CustomModel("Abass","THE","Men",11));
-        itemIds.add(new CustomModel("Giscard","THE","Men",11));
+        itemIds.add(new CustomModel("Camera","THE","Men",R.drawable.product1));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product2));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product3));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product4));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product5));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product6));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product7));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product8));
+        itemIds.add(new CustomModel("Iddrisu","THE","Men",R.drawable.product9));
 
         Apter = new CustomAdapter(itemIds,this,this);
         recycler.setAdapter(Apter);

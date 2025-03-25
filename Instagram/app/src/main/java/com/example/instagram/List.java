@@ -30,6 +30,7 @@ import java.util.Locale;
 public class List extends AppCompatActivity {
 
     ActivityListBinding listBinding;
+
   TextView name ,title ,desc;
   ImageView cover;
 
@@ -43,6 +44,11 @@ public class List extends AppCompatActivity {
 
         Intent intent = getIntent();
         String[] obj = intent.getStringArrayExtra("key");
+
+
+
+
+
         name = listBinding.DetailName;
         name.setText(obj[0].toString());
 
@@ -52,8 +58,9 @@ public class List extends AppCompatActivity {
         desc = listBinding.DetailDesc;
         desc.setText(obj[2].toString().toLowerCase(Locale.ROOT));
 
-        String ImageUrl = obj[3].toString();
         cover =listBinding.Detailimage;
+        String ImageUrl = obj[3].toString();
+        cover.setImageResource(Integer.parseInt(ImageUrl));
 //        Glide.with(this).load(ImageUrl).into(cover);
 
 
