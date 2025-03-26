@@ -81,7 +81,6 @@ public class Recycler extends AppCompatActivity implements SelectedItem {
             Toast.makeText(this, "That All "+ text, Toast.LENGTH_SHORT).show();
         } else {
             CustomAdapter myadapter2 = new CustomAdapter(filteredList, this, this);
-
             recycler.setAdapter(myadapter2);
 
         }
