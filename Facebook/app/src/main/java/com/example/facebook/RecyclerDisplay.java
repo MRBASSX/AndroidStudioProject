@@ -108,4 +108,9 @@ public class RecyclerDisplay extends AppCompatActivity implements SelectedItem{
         }
 
     }
+
+
+    public void FireBaseData(){
+
+    }
 }

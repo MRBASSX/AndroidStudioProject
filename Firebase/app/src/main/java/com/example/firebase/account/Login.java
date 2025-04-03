@@ -168,7 +168,8 @@ public class Login extends AppCompatActivity {
                             circularProgressIndicator.setVisibility(View.INVISIBLE);
                             linearProgressIndicator.setVisibility(View.INVISIBLE);
 
-                            String imageUrl;progressDialog.dismiss();
+                            String imageUrl;
+                            progressDialog.dismiss();
                             if (taskSnapshot.getMetadata().getReference() != null) {
                                 Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
                                 result.addOnSuccessListener(new OnSuccessListener<Uri>() {

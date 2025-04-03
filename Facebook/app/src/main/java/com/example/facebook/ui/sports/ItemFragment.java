@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -65,7 +66,9 @@ public class ItemFragment extends Fragment  implements SelectedItem {
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), mColumnCount));
+                recyclerView.setHasFixedSize(true);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true));
+                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3,LinearLayoutManager.HORIZONTAL,false));
             }
             recyclerView.setAdapter(new CustomAdapter(getActivity(),arrayList,this));
             SearchViews();

@@ -45,7 +45,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CustomModel customModel = arrayList.get(position);
         holder.textView.setText(customModel.getImageName());
-        Glide.with(context).load(arrayList.get(position).getImageURL().trim()).into(holder.imageView);
+        Glide.with(context).load(customModel.getImageURL().trim()).into(holder.imageView);
 //        Glide.with(context).load("https://moviegains.pythonanywhere.com/static/imagefolder/africa/africa%20(3).jpg").into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,6 +19,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class Login extends AppCompatActivity {
     TextInputEditText email,password;
+//    private FirebaseAuth mAuth;
+//    mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,20 @@ public class Login extends AppCompatActivity {
 
             if (UserPass.equals("Admin") && UserMail.equals("Admin@gmail.com")) {
 
-//                Toast.makeText(this, "Welcome Home", Toast.LENGTH_SHORT).show();
+//                mAuth.signInWithEmailAndPassword(UserMail,UserPass)
+//        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//
+//                    FirebaseUser user = mAuth.getCurrentUser();
+//                    updateUI(user);
+//                } else {
+//                    Toast.makeText(CustomAuthActivity.this, String.valueOf(task.getException), Toast.LENGTH_SHORT).show();
+//                    updateUI(null);
+//                }
+//            }
+//        });
                 Intent intent = new Intent(getApplicationContext(), Home.class);
                 startActivity(intent);
 
@@ -78,4 +93,16 @@ public class Login extends AppCompatActivity {
 
 
     }
+
+//    private void updateUI(FirebaseUser user) {
+//    }
+
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
+//    }
 }
