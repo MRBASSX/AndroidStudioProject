@@ -61,6 +61,15 @@ public class List extends AppCompatActivity {
         cover =listBinding.Detailimage;
         String ImageUrl = obj[3].toString();
         cover.setImageResource(Integer.parseInt(ImageUrl));
+
+        String Url = ImageUrl;
+
+        String html =  "<html> <head><title> Youtube </title>  </head> <body> " +
+                "<iframe width=\"560\" height=\"315\" src=\""+Url+"\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+                + " </body>" +
+                "</html> ";
+//        webView.loadUrl("file:///android_asset/youtube.html",user);
+        webView.loadUrl(html);
 //        Glide.with(this).load(ImageUrl).into(cover);
 
 
