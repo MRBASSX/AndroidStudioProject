@@ -3,52 +3,37 @@ package com.example.instagram;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instagram.databinding.ActivityListBinding;
+import com.example.instagram.databinding.ActivityDetailPageBinding;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Locale;
 
-public class List extends AppCompatActivity {
+public class DetailPage extends AppCompatActivity {
 
-    ActivityListBinding listBinding;
+    ActivityDetailPageBinding listBinding;
 
   TextView name ,title ,desc;
   ImageView cover;
+  WebView webview;
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listBinding = ActivityListBinding.inflate(getLayoutInflater());
+        listBinding = ActivityDetailPageBinding.inflate(getLayoutInflater());
         View view = listBinding.getRoot();
         setContentView(view);
-
         Intent intent = getIntent();
         String[] obj = intent.getStringArrayExtra("key");
-
-
-
-
-
+        webview = listBinding.webview;
         name = listBinding.DetailName;
         name.setText(obj[0].toString());
 
@@ -62,14 +47,19 @@ public class List extends AppCompatActivity {
         String ImageUrl = obj[3].toString();
         cover.setImageResource(Integer.parseInt(ImageUrl));
 
-        String Url = ImageUrl;
+        String Url = obj[3].toString();
 
+//        Using Html IFrame
         String html =  "<html> <head><title> Youtube </title>  </head> <body> " +
                 "<iframe width=\"560\" height=\"315\" src=\""+Url+"\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
                 + " </body>" +
                 "</html> ";
 //        webView.loadUrl("file:///android_asset/youtube.html",user);
-        webView.loadUrl(html);
+        webview.loadData(html,"text/html","utf-1");
+
+
+
+
 //        Glide.with(this).load(ImageUrl).into(cover);
 
 

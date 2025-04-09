@@ -22,4 +22,10 @@
         android:name="com.example.firebase.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_media"
+        android:name="com.example.firebase.ui.media.MediaFragment"
+        android:label="@string/menu_media"
+        tools:layout="@layout/fragment_media_list" />
 </navigation>

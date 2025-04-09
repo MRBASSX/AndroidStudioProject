@@ -19,7 +19,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".List"
+            android:name=".DetailPage"
             android:exported="false" />
         <activity
             android:name=".Recycler"

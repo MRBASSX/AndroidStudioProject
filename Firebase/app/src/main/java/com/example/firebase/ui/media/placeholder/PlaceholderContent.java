@@ -1,72 +1,46 @@
 package com.example.firebase.ui.media.placeholder;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.example.firebase.Sqlite.AddData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
- */
 public class PlaceholderContent {
+    public String imageName;
+    public String imageURL;
+    public static final List<PlaceholderContent> arrayList = Collections.emptyList();
 
-    /**
-     * An array of sample (placeholder) items.
-     */
-    public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
-
-    /**
-     * A map of sample (placeholder) items, by ID.
-     */
-    public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
-
-    private static final int COUNT = 25;
-
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceholderItem(i));
-        }
+    public PlaceholderContent(String imageName, String imageURL) {
+        this.imageName = imageName;
+        this.imageURL = imageURL;
     }
 
-    private static void addItem(PlaceholderItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+    public String getImageName() {
+        return imageName;
     }
 
-    private static PlaceholderItem createPlaceholderItem(int position) {
-        return new PlaceholderItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
+    public String getImageURL() {
+        return imageURL;
     }
 
-    /**
-     * A placeholder item representing a piece of content.
-     */
-    public static class PlaceholderItem {
-        public final String id;
-        public final String content;
-        public final String details;
-
-        public PlaceholderItem(String id, String content, String details) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
-        }
-
-        @Override
-        public String toString() {
-            return content;
-        }
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
+
+
+
 }

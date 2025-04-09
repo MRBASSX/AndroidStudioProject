@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +53,7 @@ public class Recycler extends AppCompatActivity implements SelectedItem {
     @Override
     public void onitemClick(CustomModel customData) {
 
-        Intent intent = new Intent(getApplicationContext(),List.class);
+        Intent intent = new Intent(getApplicationContext(), DetailPage.class);
         String[] product = {customData.getName(),customData.getTitle(),customData.getDes(),String.valueOf(customData.getImage())};
         intent.putExtra("key",product);
         startActivity(intent);

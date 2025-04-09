@@ -2,26 +2,30 @@ package com.example.firebase.ui.media;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.firebase.ui.media.placeholder.PlaceholderContent.PlaceholderItem;
+import com.example.firebase.classes.CustomInterface;
+import com.example.firebase.ui.media.placeholder.PlaceholderContent;
 import com.example.firebase.databinding.FragmentMediaBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final ArrayList<PlaceholderContent> mValues;
+    CustomInterface customInterface;
+    Context context;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
-        mValues = items;
+    public MyItemRecyclerViewAdapter(ArrayList<PlaceholderContent> mValues, Context context, CustomInterface customInterface) {
+        this.mValues = mValues;
+        this.context = context;
+        this.customInterface = customInterface;
     }
 
     @Override
@@ -33,9 +37,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        PlaceholderContent model = mValues.get(position);
+        holder.name.setText(model.getImageName());
+        holder.image_url.setText(model.getImageURL());
+        holder.image_url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customInterface.OnItemClick2(model);
+            }
+        });
     }
 
     @Override
@@ -44,19 +54,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public final TextView name;
+        public final TextView image_url;
+
 
         public ViewHolder(FragmentMediaBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            name = binding.itemNumber;
+            image_url = binding.content;
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

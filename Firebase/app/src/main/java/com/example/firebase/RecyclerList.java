@@ -22,6 +22,7 @@ import com.example.firebase.classes.CustomAdapter;
 import com.example.firebase.classes.CustomInterface;
 import com.example.firebase.classes.CustomModel;
 import com.example.firebase.databinding.ActivityRecyclerListBinding;
+import com.example.firebase.ui.media.placeholder.PlaceholderContent;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +61,11 @@ public class RecyclerList extends AppCompatActivity  implements CustomInterface 
 
         Toast.makeText(this, customModel.getImageName(), Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    @Override
+    public void OnItemClick2(PlaceholderContent placeholderContent) {
 
     }
 
