@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,7 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.facebook.Home;
 import com.example.facebook.R;
 import com.example.facebook.databinding.ActivityRegisterBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
@@ -24,6 +30,9 @@ public class Register extends AppCompatActivity {
     ActivityRegisterBinding  binding;
     TextInputEditText email,password,cpassword;
     ProgressDialog progressDialog ;
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +73,24 @@ public class Register extends AppCompatActivity {
 
                if (UserPass.equals(UserCPass)) {
 
-//                   progressDialog.setTitle("Registering.......");
-//                   progressDialog.show();
-                   Toast.makeText(this, UserMail +" "+UserPass+" "+UserCPass, Toast.LENGTH_SHORT).show();
-                   FirebaseRegistration();
-//                  progressDialog.dismiss();
+                 try{
+                   mAuth.createUserWithEmailAndPassword(UserMail,UserPass)
+                           .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                               @Override
+                               public void onComplete(@NonNull Task<AuthResult> task) {
+                                   if (task.isSuccessful()) {
 
+                                       FirebaseUser user = mAuth.getCurrentUser();
+                                       updateUI(user);
+                                   } else {
+                                       Toast.makeText(getApplicationContext(), String.valueOf(task.getException()), Toast.LENGTH_SHORT).show();
+                                       updateUI(null);
+                                   }
+                               }
+                           });
+               } catch (Exception e) {
+                   Toast.makeText(this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+               }
 
                }else {
 
@@ -98,14 +119,26 @@ public class Register extends AppCompatActivity {
 
 
 
-    private void FirebaseRegistration(){
 
+    private void updateUI(FirebaseUser user) {
         Toast.makeText(this, "Welcome Home", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), Home.class);
         startActivity(intent);
-
     }
 
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        try {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            updateUI(currentUser);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }

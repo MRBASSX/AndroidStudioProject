@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,7 +18,7 @@
             android:name=".DetailPage"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".account.LoginRegisterPage"
             android:exported="true" />
         <activity
             android:name=".account.Login"
@@ -30,7 +32,7 @@
             android:name=".RecyclerDisplay"
             android:exported="false" />
         <activity
-            android:name=".account.LoginRegisterPage"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

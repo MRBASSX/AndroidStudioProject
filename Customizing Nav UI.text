@@ -1,0 +1,55 @@
+1. implements NavigationView.OnNavigationItemSelectedListener
+
+2.  Toolbar toolbar;
+    NavigationView navigationView;
+    DrawerLayout drawer;
+
+3.toolbar = binding.appBarHome.toolbar;
+  setSupportActionBar(toolbar);
+  drawer = binding.drawerLayout;
+  navigationView = binding.navView;
+
+
+4. navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+
+        }
+
+
+5. @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (R.id.nav_home == item.getItemId()) {
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+ @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        if (R.id.nav_home == item.getItemId()) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+
+
+        } else if (R.id.nav_logout == item.getItemId()) {
+            FirebaseAuth.getInstance().signOut();
+            Intent  intent = new Intent(this, Login.class);
+            startActivity(intent);
+
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
